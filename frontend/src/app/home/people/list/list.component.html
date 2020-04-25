@@ -1,0 +1,75 @@
+<div class="wrapper col-md-10 offset-md-1 mt-5">
+  <div class="row" *ngFor="let person of people">
+    <div class="card mb-2" style="width:100%;">
+      <div class="card-body">
+        <i class="fas fa-user-circle fa-5x float-left rounded-circle mr-2" *ngIf="!person?.picture; else imageBlock"></i>
+        <ng-template #imageBlock>
+          <img [src]="person.picture" alt="avatar" class="float-left rounded-circle img-thumbnail mr-2" style="width: 8%">
+        </ng-template>
+        <h5 class="card-title">{{ person.name }}</h5>
+        <p class="card-text">{{ person.professionalHeadline }}</p>
+        <p><button type="button" class="btn btn-info btn-sm" [routerLink]="['/', 'home', 'people', 'bio', person.username ]" routerLinkActive="router-link-active" >See my Bio</button></p>
+      </div>
+      <ul class="nav nav-tabs ml-2 mb-4" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" title="Skills" id="skills-tab" data-toggle="tab" [href]="'#skills-'+ person.subjectId" role="tab"
+            aria-controls="skills" aria-selected="true"><i class="fas fa-tasks"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" title="Location" id="location-tab" data-toggle="tab" [href]="'#location-'+ person.subjectId" role="tab"
+            aria-controls="location" aria-selected="false"><i class="fas fa-map-marked-alt"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" title="Compensations" id="compensations-tab" data-toggle="tab" [href]="'#compensations-'+ person.subjectId" role="tab"
+            aria-controls="compensations" aria-selected="false"><i class="fas fa-money-check-alt"></i></a>
+        </li>
+      </ul>
+      <div class="tab-content m-2 ">
+        <div class="tab-pane active" [id]="'skills-'+ person.subjectId" role="tabpanel" aria-labelledby="skills-tab">
+          <span class="badge badge-secondary ml-1" *ngFor="let skill of person.skills">{{ skill.name }}</span>
+        </div>
+        <div class="tab-pane" [id]="'location-'+ person.subjectId" role="tabpanel" aria-labelledby="location-tab">
+          {{ person.locationName }}
+        </div>
+        <div class="tab-pane" [id]="'compensations-'+ person.subjectId" role="tabpanel" aria-labelledby="compensations-tab">
+          <div class="card mb-2"  *ngIf="person.compensations.employee">
+            <div class="card-body">
+              <i class="fas fa-money-bill-alt fa-2x float-left mr-2"></i>
+              <h4 class="card-title">Employee</h4>
+              <h4 class="card-subtitle">{{ person.compensations?.employee?.periodicity }}</h4>
+              <p class="card-text">{{ person.compensations?.employee?.amount }} / {{ person.compensations?.employee?.currency }}</p>
+            </div>
+          </div>
+          <div class="card mb-2" *ngIf="person.compensations.intern">
+            <div class="card-body">
+              <i class="fas fa-money-bill-alt fa-2x float-left mr-2"></i>
+              <h4 class="card-title">Intern</h4>
+              <h4 class="card-subtitle">{{ person.compensations?.intern?.periodicity }}</h4>
+              <p class="card-text">{{ person.compensations?.intern?.amount }} / {{ person.compensations?.intern?.currency }}</p>
+            </div>
+          </div>
+          <div class="card mb-2" *ngIf="person.compensations.freelancer">
+            <div class="card-body">
+              <i class="fas fa-money-bill-alt fa-2x float-left mr-2"></i>
+              <h4 class="card-title">Freelancer</h4>
+              <h4 class="card-subtitle">{{ person.compensations?.freelancer?.periodicity }}</h4>
+              <p class="card-text">{{ person.compensations?.freelancer?.amount }} / {{ person.compensations?.freelancer?.currency }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination text-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
