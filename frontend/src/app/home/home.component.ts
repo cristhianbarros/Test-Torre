@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
   template: `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" [routerLink]="['/', 'home', 'welcome']" routerLinkActive="router-link-active" >Torre Test App</a>
+      <a
+        class="navbar-brand"
+        [routerLink]="['/', 'home', 'welcome']"
+        routerLinkActive="router-link-active"
+        >Torre Test App</a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -43,6 +49,13 @@ import { Router } from '@angular/router';
               >Jobs</a
             >
           </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="logout()"
+              >LogOut</a
+            >
+          </li>
         </ul>
       </div>
     </nav>
@@ -50,9 +63,14 @@ import { Router } from '@angular/router';
   styles: [],
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.router.navigate(['/', 'home', 'welcome']);
+  }
+
+  logout() {
+    this.authService.logout();
     this.router.navigate(['/', 'home', 'welcome']);
   }
 }
