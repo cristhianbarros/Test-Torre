@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  urlSearch: 'https://search.torre.co',
+  urlBio: 'https://torre.bio/api'
 };
