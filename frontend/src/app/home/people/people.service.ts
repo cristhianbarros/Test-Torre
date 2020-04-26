@@ -16,7 +16,7 @@ export class PeopleService {
   }
 
   getBio(username: string, params: HttpParams = new HttpParams()) {
-    return this.http.get(`${environment.urlBio}/bios/${username}`, {
+    return this.http.get(`${environment.urlBio2}/${username}/detail`, {
       params,
       headers: this.headers,
     });

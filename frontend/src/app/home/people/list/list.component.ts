@@ -29,7 +29,7 @@ export interface IPeople {
   username: string;
   verified: boolean;
   weight: number;
-};
+}
 
 @Component({
   selector: 'app-list',

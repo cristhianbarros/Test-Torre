@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   template: `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Torre Test App</a>
+      <a class="navbar-brand" [routerLink]="['/', 'home', 'welcome']" routerLinkActive="router-link-active" >Torre Test App</a>
       <button
         class="navbar-toggler"
         type="button"
